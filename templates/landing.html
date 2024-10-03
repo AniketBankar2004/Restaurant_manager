@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Restaurant Manager</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            text-align: center;
+            padding: 50px;
+        }
+        .land_button {
+            border: none;
+            border-radius: 5px;
+            background-color: #45a049;
+            color: white;
+            padding: 15px 30px;
+            font-size: 16px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+            margin-bottom: 10px;
+        }
+        .land_button:hover {
+            background-color: #508d53;
+        }
+    </style>
+</head>
+<body>
+    <h1>Welcome To Restaurant Manager</h1>
+    <form action="/menu" method="get">
+        <button class="land_button" type="submit">Take an Order</button>
+    </form>
+    
+    <form action="/order-history" method="get">
+        <button class="land_button" type="submit">See Order History</button>
+    </form>
+</body>
+</html>

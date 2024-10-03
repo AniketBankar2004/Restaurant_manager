@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Order Summary</title>
+    <style>
+        .summary {
+            margin: 20px;
+            padding: 20px;
+            border: 1px solid #ccc;
+            border-radius: 8px;
+            background-color: #f9f9f9;
+            text-align: center;
+        }
+        .summary h2 {
+            text-align: center;
+        }
+        .summary table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+        .summary th, .summary td {
+            border: 1px solid #ddd;
+            padding: 8px;
+            text-align: center;
+        }
+        .summary th {
+            background-color: #f2f2f2;
+        }
+        .summary .total {
+            font-weight: bold;
+            background-color: #f2f2f2;
+        }
+        .finish-btn {
+            margin-top: 20px;
+        }
+        .finish-btn button {
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 16px;
+            cursor: pointer;
+            border-radius: 8px;
+            margin-bottom: 10px;
+        }
+        .finish-btn button:hover {
+            background-color: #45a049;
+        }
+    </style>
+</head>
+<body>
+    <div class="summary">
+        <h1>Order Has Been Placed Succussfully</h1>
+        <h2>Order Summary</h2>
+        <p><strong>Table Number:</strong> {{ table_number }}</p>
+        <p><strong>Order Time:</strong> {{ order_time }}</p>
+
+        <table>
+            <tr>
+                <th>Dish</th>
+                <th>Quantity</th>
+                <th>Price per Item</th>
+                <th>Total</th>
+            </tr>
+            {% for dish, quantity in order_details.items() %}
+            <tr>
+                <td>{{ dish }}</td>
+                <td>{{ quantity }}</td>
+                <td>Rs.{{ menu_items[dish].price }}</td>
+                <td>Rs.{{ menu_items[dish].price * quantity }}</td>
+            </tr>
+            {% endfor %}
+            <tr class="total">
+                <td colspan="3"><strong>Total Bill:</strong></td>
+                <td>Rs.{{ total_bill }}</td>
+            </tr>
+        </table>
+
+        <!-- Finish Button -->
+        <div class="finish-btn">
+            <form action="/" method="get">
+                <button type="submit">Home</button>
+            </form>
+            <form action="/menu" method="get">
+                <button type ='submit'>
+                    Take another order
+                </button>
+            </form>
+        </div>
+    </div>
+</body>
+</html>

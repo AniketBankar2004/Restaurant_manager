@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Order History</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 20px;
+        }
+        .container {
+            width: 80%;
+            margin: auto;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+        }
+        .order-card {
+            background-color: white;
+            border-radius: 8px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+            padding: 20px;
+            margin: 10px;
+            flex: 1 1 calc(30% - 20px); /* Adjusts the size of the cards */
+            box-sizing: border-box;
+        }
+        .order-card h3 {
+            margin: 0;
+            color: #333;
+        }
+        .order-card p {
+            margin: 5px 0;
+        }
+        .total {
+            font-weight: bold;
+            color: #333;
+        }
+        .back-button {
+            margin-top: 20px;
+            text-align: center;
+        }
+        .back-button button {
+            background-color: #45a049;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        .back-button button:hover {
+            background-color: #3e8e41;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Order History</h1>
+
+        {% for order in orders %}
+        <div class="order-card">
+            <h3>Table {{ order['table_number'] }}</h3>
+            <p><strong>Order Time:</strong> {{ order['order_time'] }}</p>
+            <div class="order-items">
+                <p><strong>Items Ordered:</strong></p>
+                <ul>
+                    {% for dish, quantity in order['items'].items() %}
+                    <li>{{ dish }}: {{ quantity }}x</li>
+                    {% endfor %}
+                </ul>
+            </div>
+            <p class="total"><strong>Total Bill:</strong> ${{ order['total_bill'] }}</p>
+        </div>
+        {% endfor %}
+    </div>
+
+    <div class="back-button">
+        <form action="/" method="get">
+            <button type="submit">Back to Menu</button>
+        </form>
+    </div>
+</body>
+</html>
